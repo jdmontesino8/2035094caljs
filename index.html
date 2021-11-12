@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css" >
+    <title>Concentrese</title>
+</head>
+<body>
+    <header></header>
+    <nav>
+
+    </nav>
+    <main>
+        <section>
+            <div class="container">
+                <div id="d1" class="item" onclick="img('1')"></div>
+                <div id="d2" class="item" onclick="img('2')"></div>
+                <div id="d3" class="item" onclick="img('3')"></div>
+                <div id="d4" class="item" onclick="img('4')"></div>
+                <div id="d5" class="item" onclick="img('5')"></div>
+                <div id="d6" class="item" onclick="img('6')"></div>
+                <div id="d7" class="item" onclick="img('7')"></div>
+                <div id="d8" class="item" onclick="img('8')"></div>
+                <div id="d9" class="item" onclick="img('9')"></div>
+                <div id="d10" class="item" onclick="img('10')"></div>
+                <div id="d11" class="item" onclick="img('11')"></div>
+                <div id="d12" class="item" onclick="img('12')"></div>
+              </div>  
+        </section>
+    </main>
+    <footer>
+
+    </footer> 
+    <script>
+        var animales=['caballo.png','perro.png','vaca.png','cabra.png','cerdo.png','burro.png',
+        'caballo.png','perro.png','vaca.png','cabra.png','cerdo.png','burro.png']
+        const ganar=6;
+        animales.sort(function() { return Math.random() - 0.5 });
+        var cont=0,cont2=0,anterior,vector=[0];
+        patron="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80' width='80' height='80'%3E%3Cpath fill='%239C92AC' fill-opacity='0.4' d='M14 16H9v-2h5V9.87a4 4 0 1 1 2 0V14h5v2h-5v15.95A10 10 0 0 0 23.66 27l-3.46-2 8.2-2.2-2.9 5a12 12 0 0 1-21 0l-2.89-5 8.2 2.2-3.47 2A10 10 0 0 0 14 31.95V16zm40 40h-5v-2h5v-4.13a4 4 0 1 1 2 0V54h5v2h-5v15.95A10 10 0 0 0 63.66 67l-3.47-2 8.2-2.2-2.88 5a12 12 0 0 1-21.02 0l-2.88-5 8.2 2.2-3.47 2A10 10 0 0 0 54 71.95V56zm-39 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm40-40a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM15 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm40 40a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'%3E%3C/path%3E%3C/svg%3E";
+        
+        function img(elemento){
+            cont=cont+1;
+            imagen='imagenes/animales/'+animales[elemento-1];
+            document.getElementById('d'+elemento).setAttribute("style", "background-image: url("+imagen+");");
+             
+            if (cont%2==0){
+                    if (animales[anterior-1]==animales[elemento-1]){
+                        cont2=cont2+1;
+                        if (cont2==6)
+                           alert("Haz ganado el juego");
+                    }
+                    else{
+                        setTimeout(() => {
+                            // alert("anterior: "+anterior+" elemento: "+elemento+" cont: "+cont)
+                            document.getElementById('d'+vector[cont]).setAttribute("style", "background-image: url("+patron+");");
+                            document.getElementById('d'+vector[cont-1]).setAttribute("style", "background-image: url("+patron+");");
+                        }, 500);
+                    }
+                }
+            anterior=elemento;
+            vector.push(elemento);
+           
+            //alert(vector)
+            // alert("anterior: "+anterior)   
+        }
+    </script> 
+</body>
+</html>
